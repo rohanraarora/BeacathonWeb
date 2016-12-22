@@ -30,7 +30,7 @@ class ApiControllerController < ApplicationController
 
   def add_user_in_region
 
-    region = Region.find(params[:beacon_ssn])
+    region = Region.find_by_beacon_ssn(params[:beacon_ssn])
     user_region = UserRegionMapping.find_by_user_id_and_region_id(@current_user.id,region.id)
     if user_region.nil?
       user_region = UserRegionMapping.new
@@ -49,7 +49,7 @@ class ApiControllerController < ApplicationController
 
   def remove_user_from_region
 
-    region = Region.find(params[:beacon_ssn])
+    region = Region.find_by_beacon_ssn(params[:beacon_ssn])
     user_region = UserRegionMapping.find_by_user_id_and_region_id(@current_user.id,region.id)
     unless user_region.nil?
       user_region.destroy
@@ -59,6 +59,22 @@ class ApiControllerController < ApplicationController
         return_success_response(nil,"Success")
       }
     end
+
+  end
+
+  def get_users_for_region
+
+    region = Region.find_by_beacon_ssn(params[:beacon_ssn])
+    unless region.nil?
+      respond_to do |format|
+        format.json{
+          data = Hash.new
+          data[:users] = region.users
+          return_success_response(data,"Success")
+        }
+      end
+    end
+
 
   end
 

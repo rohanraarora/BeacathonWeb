@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post '/add_user_in_region' => 'api_controller#add_user_in_region'
   post '/remove_user_from_region' => 'api_controller#remove_user_from_region'
   post '/sign_up' => 'api_controller#sign_up'
+  get '/users_for_region' => 'api_controller#get_users_for_region'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
