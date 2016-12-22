@@ -8,9 +8,10 @@ class ApiControllerController < ApplicationController
 
     email = params[:email]
     name = params[:email]
+    profile_pic_url = params[:profile_pic_url]
     user = User.find_by_email(email)
     if user.nil?
-      user = User.new(email: email, name: name)
+      user = User.new(email: email, name: name, profile_pic_url: profile_pic_url)
     end
     if(user.token.nil? or user.token_expiry_date < Date.today)
       user.generate_token
@@ -48,7 +49,6 @@ class ApiControllerController < ApplicationController
 
 
   def remove_user_from_region
-
     region = Region.find_by_beacon_ssn(params[:beacon_ssn])
     user_region = UserRegionMapping.find_by_user_id_and_region_id(@current_user.id,region.id)
     unless user_region.nil?
