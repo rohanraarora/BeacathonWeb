@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :users
   resources :regions
 
+  root 'welcome#index'
   post '/add_user_in_region' => 'api_controller#add_user_in_region'
   post '/remove_user_from_region' => 'api_controller#remove_user_from_region'
   post '/sign_up' => 'api_controller#sign_up'
