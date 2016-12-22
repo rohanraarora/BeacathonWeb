@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Users</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Region Name</th>
+    <th>User Email</th>
+    <th>User Name</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @user_regions.each do |ur| %>
+      <tr>
+        <td><%= ur.region.name %></td>
+        <td><%= ur.user.email %></td>
+        <td><%= ur.user.name %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>

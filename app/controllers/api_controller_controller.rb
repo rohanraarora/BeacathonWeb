@@ -63,7 +63,6 @@ class ApiControllerController < ApplicationController
   end
 
   def get_users_for_region
-
     region = Region.find_by_beacon_ssn(params[:beacon_ssn])
     unless region.nil?
       respond_to do |format|
@@ -74,8 +73,10 @@ class ApiControllerController < ApplicationController
         }
       end
     end
+  end
 
-
+  def get_users_regions
+    @user_regions = UserRegionMapping.all
   end
 
 end
