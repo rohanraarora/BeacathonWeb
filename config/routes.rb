@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post '/sign_up' => 'api_controller#sign_up'
   get '/users_for_region' => 'api_controller#get_users_for_region'
   get '/user_regions' => 'api_controller#get_users_regions'
+  get '/logout' => 'api_controller#logout'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

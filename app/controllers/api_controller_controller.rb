@@ -2,7 +2,7 @@ class ApiControllerController < ApplicationController
 
   skip_before_action :verify_authenticity_token
 
-  before_action :authenticate_token, only: [:add_user_in_region, :remove_user_from_region]
+  before_action :authenticate_token, only: [:add_user_in_region, :remove_user_from_region, :logout]
 
   def sign_up
 
@@ -78,6 +78,15 @@ class ApiControllerController < ApplicationController
 
   def get_users_regions
     @user_regions = UserRegionMapping.all
+  end
+
+  def logout
+    @current_user.user_region_mappings.destroy_all
+    respond_to do |format|
+      format.json{
+        return_success_response(nil,"Success")
+      }
+    end
   end
 
 end
