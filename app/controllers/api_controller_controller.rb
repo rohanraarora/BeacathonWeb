@@ -7,11 +7,12 @@ class ApiControllerController < ApplicationController
   def sign_up
 
     email = params[:email]
-    name = params[:email]
+    name = params[:name]
     profile_pic_url = params[:profile_pic_url]
     user = User.find_by_email(email)
     if user.nil?
-      user = User.new(email: email, name: name, profile_pic_url: profile_pic_url)
+      user = User.new(email: email, name: name)
+      user.profile_pic_url = profile_pic_url;
     end
     if(user.token.nil? or user.token_expiry_date < Date.today)
       user.generate_token
