@@ -48,6 +48,24 @@ class ApiControllerController < ApplicationController
 
   end
 
+  def update_user_in_regions
+    regions_ssn = params[:list_beacon_ssn]
+    @current_user.user_region_mappings.destroy_all
+    regions_ssn.each do |region_beacon_ssn|
+      region = Region.find_by_beacon_ssn(region_beacon_ssn)
+      user_region = UserRegionMapping.new
+      user_region.user = @current_user
+      user_region.region = region
+      user_region.save
+    end
+
+    respond_to do |format|
+      format.json{
+        return_success_response(nil,"Success")
+      }
+    end
+  end
+
 
   def remove_user_from_region
     region = Region.find_by_beacon_ssn(params[:beacon_ssn])

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post '/add_user_in_region' => 'api_controller#add_user_in_region'
   post '/remove_user_from_region' => 'api_controller#remove_user_from_region'
   post '/sign_up' => 'api_controller#sign_up'
+  post '/update_user_in_regions' => 'api_controller#update_user_in_regions'
   get '/users_for_region' => 'api_controller#get_users_for_region'
   get '/user_regions' => 'api_controller#get_users_regions'
   get '/logout' => 'api_controller#logout'
