@@ -2,7 +2,7 @@ class ApiControllerController < ApplicationController
 
   skip_before_action :verify_authenticity_token
 
-  before_action :authenticate_token, only: [:add_user_in_region, :remove_user_from_region, :logout]
+  before_action :authenticate_token, only: [:add_user_in_region, :remove_user_from_region,:update_user_in_regions,:logout]
 
   def sign_up
 
