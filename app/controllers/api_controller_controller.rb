@@ -49,7 +49,7 @@ class ApiControllerController < ApplicationController
   end
 
   def update_user_in_regions
-    regions_ssn = params[:list_beacon_ssn]
+    regions_ssn = params[:list_beacon_ssn].split(',')
     @current_user.user_region_mappings.destroy_all
     regions_ssn.each do |region_beacon_ssn|
       region = Region.find_by_beacon_ssn(region_beacon_ssn)
